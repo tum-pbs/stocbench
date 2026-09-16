@@ -1,0 +1,12 @@
+defaults:
+  - experiment: stoc
+  - model: dm
+  - tracking: wandb
+  - hf: base
+  - trainer: train
+  - callbacks: train
+  - hydra: train
+  - _self_
+
+seed: 42
+ckpt_path: null

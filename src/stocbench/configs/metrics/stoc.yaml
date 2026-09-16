@@ -1,0 +1,9 @@
+# @package metrics
+- _target_: stocbench.metrics.EnsembleStatError
+  stat: mean
+  record_steps: true
+- _target_: stocbench.metrics.EnsembleStatError
+  stat: std
+  record_steps: true
+- _target_: stocbench.metrics.EnergyDistance
+- _target_: stocbench.metrics.EnstrophyError

@@ -1,0 +1,20 @@
+_target_: stocbench.models.dm.DiffusionModel
+name: dm
+
+defaults:
+  - net: unet
+  - _self_
+
+sched:
+  _target_: stocbench.models.diffusion.VP
+  beta_schedule: linear  # linear | cosine
+  beta_min: 0.1
+  beta_max: 20.0
+  cosine_s: 0.008
+  t_eps: 1e-4
+
+sampler:
+  _target_: stocbench.models.diffusion.samplers.ExpSampler
+
+lr: 1e-4
+weight_decay: 0.0

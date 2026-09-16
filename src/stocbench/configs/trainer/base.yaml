@@ -1,0 +1,6 @@
+_target_: pytorch_lightning.Trainer
+accelerator: auto  # GPU when available, else CPU
+strategy: auto  # DDP across all visible GPUs, single process otherwise
+devices: auto
+num_nodes: ${int:${oc.env:SLURM_NNODES,1}}
+precision: 32

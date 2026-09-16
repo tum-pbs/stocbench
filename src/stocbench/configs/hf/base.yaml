@@ -1,0 +1,12 @@
+# `hf:<path>` config values are downloaded from these repos into cache_dir.
+data:
+  repo_id: pfistse/stocbench-data
+  repo_type: dataset
+  revision: main
+  cache_dir: ${oc.env:STOCBENCH_DATA_DIR,"~/.cache/stocbench/data"}
+
+ckpt:
+  repo_id: pfistse/stocbench-ckpts
+  repo_type: model
+  revision: main
+  cache_dir: ${oc.env:STOCBENCH_CKPT_DIR,"~/.cache/stocbench/checkpoints"}

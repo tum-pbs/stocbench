@@ -1,0 +1,52 @@
+usetex: auto  # true | false | auto (LaTeX when latex + newtx are installed)
+latex_preamble:
+  - "\\usepackage{newtxtext}"
+  - "\\usepackage{newtxmath}"
+
+rc:
+  font.family: serif
+  font.size: 10
+  axes.labelsize: 10
+  axes.titlesize: 10
+  xtick.labelsize: 8
+  ytick.labelsize: 8
+  legend.fontsize: 8
+  lines.linewidth: 1.0
+  lines.markersize: 4.0
+  lines.solid_capstyle: round
+  axes.labelpad: 2.0
+  axes.titlepad: 3.0
+  axes.xmargin: 0.02
+  axes.ymargin: 0.02
+  axes.grid: true
+  grid.linewidth: 0.5
+  grid.alpha: 0.25
+  legend.frameon: false
+  legend.handlelength: 1.6
+  legend.labelspacing: 0.3
+  legend.columnspacing: 0.8
+  savefig.dpi: 300
+  savefig.bbox: tight
+  savefig.pad_inches: 0.05
+  pgf.rcfonts: false
+
+figsize:
+  single: [4.6, 3.2]
+  wide: [6.4, 4.5]
+  grid: [8.0, 5.3]  # plus the 0.5" legend strip on top
+
+line_alpha: 0.85
+
+legend_box: {loc: upper right, frameon: true, facecolor: white, framealpha: 0.8}  # in-axes legends
+
+stat_labels: {mean: Mean, std: Std}
+
+colors:
+  cycle: ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b",
+          "#e377c2", "#7f7f7f", "#bcbd22", "#17becf", "#000000"]
+  sched: {mean: "#3fb0d9", std: "#e85c9e"}  # schedule-curve gradient endpoints
+
+cmaps:
+  mean: icefire
+  std: OrRd
+  diff: coolwarm

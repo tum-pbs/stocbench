@@ -1,0 +1,12 @@
+# @package metrics
+# std error is absolute: the reference std is ~0 on the deterministic dataset.
+- _target_: stocbench.metrics.EnsembleStatError
+  stat: mean
+  relative: true
+  record_steps: true
+- _target_: stocbench.metrics.EnsembleStatError
+  stat: std
+  relative: false
+  record_steps: true
+- _target_: stocbench.metrics.RolloutRMSE
+- _target_: stocbench.metrics.EnstrophyError

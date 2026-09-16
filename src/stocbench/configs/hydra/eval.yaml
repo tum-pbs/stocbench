@@ -1,0 +1,6 @@
+defaults:
+  - base
+  - _self_
+
+run:
+  dir: results/${hydra:runtime.choices.model}_${now:%Y-%m-%d_%H-%M-%S}

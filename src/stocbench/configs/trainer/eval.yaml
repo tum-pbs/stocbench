@@ -1,0 +1,9 @@
+defaults:
+  - base
+  - _self_
+
+logger: false
+enable_checkpointing: false
+enable_model_summary: false
+benchmark: true
+use_distributed_sampler: false  # DistributedSliceSampler: no sample duplication across ranks

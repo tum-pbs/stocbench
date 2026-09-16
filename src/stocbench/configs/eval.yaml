@@ -1,0 +1,23 @@
+defaults:
+  - experiment: stoc
+  - model: dm
+  - evaluate: stocbench
+  - hf: base
+  - trainer: eval
+  - hydra: eval
+  - _self_
+
+seed: 42
+output_dir: .  # the hydra run dir; set hydra.run.dir to name the run
+
+# Published checkpoint of the selected experiment/model (@max = highest epoch on the hub).
+ckpt_path: hf:${hydra:runtime.choices.experiment}/${hydra:runtime.choices.model}/@max/${oc.select:eval_ckpt.${hydra:runtime.choices.experiment}.${hydra:runtime.choices.model},last-ema.ckpt}
+
+# Published checkpoints that deviate from the defaults (<experiment>: {<model>: ...}).
+eval_ckpt:
+  stoc: {add_fm: best-ema.ckpt}  # validation-selected EMA weights
+legacy_padding:  # trained with zero padding (read by model/cd.yaml, model/add_fm.yaml)
+  stoc: {cd: zeros, add_fm: zeros}
+
+data:
+  batch_size: 3000

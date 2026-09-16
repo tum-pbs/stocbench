@@ -1,0 +1,8 @@
+# Minutes-scale CPU sanity check.
+figures: stocbench
+sampling_schedules: [u:1,u:2]
+ensemble_size: 8
+n_inits: 2
+rollout_steps: 2
+long_rollout_steps: 50
+batch_size: 8

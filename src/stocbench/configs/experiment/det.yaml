@@ -1,0 +1,16 @@
+# @package _global_
+# Deterministic INCNS: rollouts compare against the GT trajectory (gt_rollout).
+defaults:
+  - /data: det
+  - /metrics: det
+
+callback:
+  _target_: stocbench.callbacks.EvalCallback
+  gt_rollout: true
+
+val_monitor: val/rollout_rmse  # selects best-ema.ckpt during training
+
+evaluate:  # validation-time scale; eval.yaml overrides for the full benchmark
+  ensemble_size: 32
+  n_inits: 48
+  rollout_steps: 10

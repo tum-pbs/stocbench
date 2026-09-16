@@ -1,0 +1,16 @@
+_target_: stocbench.models.si.StochasticInterpolation
+name: si
+
+defaults:
+  - net: unet
+  - _self_
+
+sigma_coef: 1.0
+beta_fn: t^2  # t | t^2
+t_train: [0.0, 0.999]
+t_sample: [0.0, 0.999]
+foellmer: false
+foellmer_coef: 1.0
+
+lr: 1e-4
+weight_decay: 0.0

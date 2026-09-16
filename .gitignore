@@ -1,0 +1,21 @@
+__pycache__/
+*.egg-info/
+/build/
+/dist/
+/.venv/
+.vscode/
+.idea/
+.claude/
+
+# experiment outputs and local caches (repository root only)
+/runs/
+/results*/
+/plots*/
+/multirun/
+/outputs/
+/wandb/
+/slurm_logs/
+*.out
+*.ckpt
+/data/
+/checkpoints/

@@ -1,0 +1,16 @@
+# @package _global_
+# Stochastic INCNS: distributional metrics, free-running rollouts.
+defaults:
+  - /data: stoc
+  - /metrics: stoc
+
+callback:
+  _target_: stocbench.callbacks.EvalCallback
+  gt_rollout: false
+
+val_monitor: val/energy_dist  # selects best-ema.ckpt during training
+
+evaluate:  # validation-time scale; eval.yaml overrides for the full benchmark
+  ensemble_size: 1000
+  n_inits: 16
+  rollout_steps: 10

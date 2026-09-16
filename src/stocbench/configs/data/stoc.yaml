@@ -1,0 +1,25 @@
+_target_: stocbench.data.IncnsData
+_recursive_: false
+root: hf:incns_stoc/64
+sim_channels: ["vort"]
+sim_params: []
+batch_size: 256
+num_workers: 4
+
+train_dataset:
+  _target_: stocbench.data.TrajTrain
+  seeds: [42, 43, 44]
+  stride: 1
+  seq_len: ${add:${oc.select:model.unroll_steps,1},1}  # frames per sample: the model's unrolled steps + 1
+
+test_loaders:
+  stats:
+    dataset:
+      _target_: stocbench.data.StocStats
+      seeds: ${range:100,${evaluate.n_inits}}  # one held-out seed per initial condition
+    batch_size: 1  # each init is inflated to the ensemble size
+  rollout:
+    dataset:
+      _target_: stocbench.data.StocRollout
+      seeds: [42]
+      ensemble_size: ${evaluate.ensemble_size}

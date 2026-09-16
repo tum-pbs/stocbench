@@ -1,0 +1,12 @@
+_target_: stocbench.models.fm.FlowMatchingModel
+name: fm
+
+defaults:
+  - net: unet
+  - _self_
+
+sigma_min: 0.001
+integrator: euler  # euler | rk4
+
+lr: 1e-4
+weight_decay: 0.0

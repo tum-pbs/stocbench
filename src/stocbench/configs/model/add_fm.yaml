@@ -1,0 +1,32 @@
+_target_: stocbench.models.add_fm.ADDFlowMatching
+_recursive_: false
+name: add_fm
+# Multi-GPU training needs trainer.strategy=ddp_find_unused_parameters_true (alternating G/D updates).
+
+defaults:
+  - fm@teacher
+  - _self_
+
+teacher_ckpt: hf:${hydra:runtime.choices.experiment}/fm/@max/last-ema.ckpt
+hf: ${hf.ckpt}
+
+teacher:  # the student is a copy of the teacher net
+  net:
+    padding_mode: ${oc.select:legacy_padding.${hydra:runtime.choices.experiment}.add_fm,circular}
+
+student_steps: 1
+teacher_steps: 10
+distill_weight: 0.9  # distillation vs adversarial loss
+gen_rate: 5  # discriminator steps per generator step
+r1_gamma: 1.0
+
+discriminator:
+  _target_: stocbench.models.backbones.discriminator.ADDDiscriminator
+  hidden_dim: 128
+  freeze_backbone: false
+
+lr_g: 1e-4
+lr_d: 1e-4
+betas_g: [0.0, 0.99]
+betas_d: [0.0, 0.99]
+weight_decay: 0.0

@@ -1,0 +1,24 @@
+_target_: stocbench.models.cd.ConsistencyDistillationModel
+_recursive_: false
+name: cd
+
+defaults:
+  - edm@teacher
+  - net: unet
+  - _self_
+
+teacher_ckpt: hf:${hydra:runtime.choices.experiment}/edm/@max/last-ema.ckpt
+hf: ${hf.ckpt}
+
+student_steps: 100  # student sigma grid
+ema_rate: 0.999
+
+net:
+  drop_rate: 0.0
+  padding_mode: ${oc.select:legacy_padding.${hydra:runtime.choices.experiment}.cd,circular}
+teacher:
+  net:
+    padding_mode: ${oc.select:legacy_padding.${hydra:runtime.choices.experiment}.cd,circular}
+
+lr: 1e-4
+weight_decay: 0.0

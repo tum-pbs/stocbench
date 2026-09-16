@@ -1,0 +1,28 @@
+_target_: stocbench.data.IncnsData
+_recursive_: false
+root: hf:incns_det/64
+sim_channels: ["vorticity"]
+sim_params: []
+cond_extra_channels: 1  # ground-truth forcing appended to the condition
+batch_size: 256
+num_workers: 4
+
+train_dataset:
+  _target_: stocbench.data.TrajTrain
+  seeds: [42, 43, 44]
+  stride: 1
+  seq_len: ${add:${oc.select:model.unroll_steps,1},1}  # frames per sample: the model's unrolled steps + 1
+
+test_loaders:
+  stats:
+    dataset:
+      _target_: stocbench.data.DetStats
+      seeds: [45]
+      n_inits: ${evaluate.n_inits}
+    batch_size: 1  # each init is inflated to the ensemble size
+  rollout:
+    dataset:
+      _target_: stocbench.data.DetRollout
+      seeds: [45]
+      rollout_len: ${evaluate.rollout_steps}
+      ensemble_size: ${evaluate.ensemble_size}  # rollout metrics average over the ensemble; n_inits is for the one-step stats

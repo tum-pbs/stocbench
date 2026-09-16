@@ -1,0 +1,62 @@
+name_prefix: det_  # figures are saved as <name_prefix><figure>
+# `steps` selects the largest available budget <= it.
+
+mean_err:  # mean error vs NFE (std is covered by std_norm: the GT std is zero)
+  legend: box
+  xlabel: NFE
+  xlim: [0, 400]
+  yscale: log
+  metrics:
+    - {key: mean_error, title: Deterministic Kolmogorov flow, ylabel: Relative L2 error (mean), ymax: 0.12}
+
+std_norm:  # L2 norm of the predicted std field vs NFE
+  legend: box
+  axes: {title: Deterministic Kolmogorov flow, xlabel: NFE, xlim: [0, 400], ylabel: L2 error (std), yscale: log}
+
+rmse_steps:  # rollout RMSE vs NFE
+  legend: box
+  xlabel: NFE
+  xlim: [0, 400]
+  metrics:
+    - {key: rollout_rmse, ylabel: Mean rollout RMSE, ymax: 0.7}
+
+# r50_* keys: the long-rollout pass (evaluate.long_rollout_steps) at the last budget.
+rmse_rollout:  # RMSE vs rollout step at a fixed budget
+  legend: box
+  key: r50_rollout_rmse
+  steps: 400
+  axes: {xlabel: Rollout step, ylabel: RMSE}
+
+enstr_spec:  # enstrophy spectrum at the final rollout step, with zoom inset
+  key: r50_enstrophy_error
+  steps: 400
+  axes: {xlabel: Wavenumber k, ylabel: Enstrophy, xscale: log, yscale: log}
+  inset: {bounds: [0.15, 0.09, 0.50, 0.56], xlim: [5, 13], ylim: [50, 1000]}
+
+enstr_rollout:  # enstrophy spectrum error vs rollout step
+  key: r50_enstrophy_error
+  steps: 400
+  axes: {xlabel: Rollout step, ylabel: Enstrophy spectrum error}
+
+enstr_ratio:  # model/ground-truth enstrophy per wavenumber
+  key: r50_enstrophy_error
+  steps: 400
+  kmax: 40  # the reference enstrophy vanishes beyond this
+  axes: {xlabel: Wavenumber k, ylabel: Enstrophy ratio, xscale: log, ylim: [0.5, 2]}
+
+enstr_flow:  # spectrum-over-sampler-steps heatmap, one row per run
+  key: r50_enstrophy_error
+  steps: 400
+  cmap: cubehelix
+  k_range: [2, 32]
+  gamma: 1.0
+
+schedule:  # mean/std error at each sampler step (metrics with record_steps)
+  cmap_range: [0.0, 1.0]  # black (fewest steps) -> hue (most steps)
+  minor: {mean: 0.01, std: 1}  # gridline spacing
+  xlabel: Noise level index
+  levels: 100  # CD student sigma grid size
+
+stat_grid:  # model / ground-truth / difference fields per seed
+  cols: 2
+  max_seeds: 8

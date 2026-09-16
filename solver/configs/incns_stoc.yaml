@@ -1,0 +1,15 @@
+_target_: solver.configs.IncnsConfig
+n: 256
+l: 6.283185307179586
+dt: 0.0001
+nu: 0.001
+drag: -0.1
+sample_dt: 0.5
+epsilon: 1.0
+forcing_modes:
+  - [6.0, 0.0]
+  - [7.0, 0.0]
+  - [5.0, 5.0]
+  - [8.0, 8.0]
+mean: 0.0
+std: 3

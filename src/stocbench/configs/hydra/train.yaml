@@ -1,0 +1,6 @@
+defaults:
+  - base
+  - _self_
+
+run:
+  dir: runs/${now:%Y-%m-%d}/${oc.env:SLURM_JOB_ID,${now:%H-%M-%S}}

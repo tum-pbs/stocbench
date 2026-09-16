@@ -1,0 +1,9 @@
+# Paper protocol: the budget sweep with 10-step rollouts, then the rollout metrics over 50 steps
+# at the last budget (r50_* artifacts).
+figures: stocbench  # plotting/plots/<figures>/<experiment>.yaml
+sampling_schedules: [u:10,u:20,u:30,u:40,u:50,u:60,u:70,u:80,u:90,u:100,u:200,u:300,u:400]
+ensemble_size: 3000
+n_inits: 48
+rollout_steps: 10
+long_rollout_steps: 50
+batch_size: 1000

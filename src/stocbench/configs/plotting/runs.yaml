@@ -1,0 +1,11 @@
+# Run registry: keys are result-directory names. nfe = network evaluations per solver step.
+runs:
+  si:         {label: SI, color: "#1f77b4", marker: o}
+  dpm2:       {label: DPM-2, color: "#d6c62f", marker: D, nfe: 2}
+  dpm2_lsnr:  {label: DPM-2 (logSNR), color: "#8c564b", marker: D, nfe: 2}
+  ddim_e00:   {label: DDIM, color: "#d62728", marker: ^}
+  ddim_e10:   {label: DDPM, color: "#2ca02c", marker: v}
+  fm:         {label: FM, color: "#ff7f0e", marker: s}
+  cd1:        {label: CD-1, color: "#7f7f7f", linestyle: dotted}
+  cd2:        {label: CD-2, color: "#7f7f7f", linestyle: dashed}
+  addfm:      {label: ADD-FM, color: "#9c51c4", linestyle: dotted, marker: h}
